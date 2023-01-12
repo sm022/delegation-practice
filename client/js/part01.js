@@ -1,5 +1,5 @@
 
-
+// data[0].alt
 
 const data = [
   {
@@ -31,6 +31,7 @@ const data = [
 
 
 const navigation = getNode('.navigation');
+const visualImage = getNode('.visual img');
 // const list = getNodes('.navigation > li');
 
 
@@ -43,26 +44,37 @@ function makeArray(arrayLike){
 
 // 내가 선택하지 않은(모든 li) li에게 is-active 클래스를 제거해주세요
 
+// 비주얼 안에 있는 이미지를 가져온다
+// 이미지의 src 속성에 접근한다.
+// src의 값을 index로 바꾼다.
+
+// alt 변경
+
 function handler(e){
 
   let target = e.target.closest('li');
-  let list = makeArray(navigation.children);
-
   if(!target) return;
+  
+  let list = makeArray(navigation.children);
+  let index = attr(target,'data-index');
 
   // Array.from(list)
   // let arr = [...list]
   // Arraty.prototype.slice.call(list)
   
-  
+  // [li,li,li,li]
   list.forEach(item=>removeClass(item,'is-active'))
 
   // for(let i = 0; i < navigation.children.length)
 
+  attr(visualImage,'src',`./assets/part01/${data[index-1].src}`);
+  attr(visualImage,'alt',data[index-1].alt);
+  // visualImage.src = `./assets/part01/visual${index}.jpg`;
+  // console.log(index);
+
   addClass(target,'is-active');
 
 }
-
 
 navigation.addEventListener('click',handler);
 
