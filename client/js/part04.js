@@ -6,11 +6,13 @@ const contents = getNode('.contents');
 const textField = getNode('#comment37');
 
 
+function clearText(target) {
+  target.value = "";
+}
+
+
 function handler(e){
 
-  function clearText(target) {
-    target.value = "";
-  }
 
   let target = e.target;
 
