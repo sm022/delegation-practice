@@ -21,7 +21,65 @@ const data = [
     "src": "visual4.jpg",
     "alt": "물방을 모양의 독특한 디자인의 의자들을 나열한 공간"
   }
-]
+];
+
+/*
+const list = document.querySelectorAll('.navigation > li')
+
+list.forEach((item)=>{
+  item.addEventListener('click',()=>{{
+  
+  }})
+})
+*/
+
+// 이벤트 위임 x
+
+// const list = $('.navigation > li');
+
+/*
+$('.navigation > li').click(function(e){
+
+  e.preventDefault();
+  
+  let index = $(this).index(); 
+  
+  
+  $('.navigation > li').removeClass('is-active');
+
+  $(this).addClass('is-active');
+  // .delay(2000).fadeOut();
+
+  $('.visual img').attr({
+    'src':`./assets/part01/${data[index].src}`,
+    'alt':data[index].alt
+  })
+  
+
+});
+*/
+
+$('.navigation').on('click','li',function(e){
+
+  e.preventDefault();
+
+  let index = $(this).attr('data-index');
+
+  $('.navigation > li').removeClass('is-active');
+  $(this).addClass('is-active');
+
+  $('.visual img').attr({
+    'src':`./assets/part01/${data[index-1].src}`,
+    'alt':data[index-1].alt
+  })
+  
+  console.log(index);
+
+});
+
+
+
+
 
 
 
